@@ -1,19 +1,232 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<!--
+    PERSONA A - Parte del layout
+    Incluye: header (foto de perfil + campana), tarjeta "Welcome", fila de servicios
+    Este bloque va DENTRO del ConstraintLayout raíz de activity_main.xml
+-->
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:padding="16dp"
     tools:context=".MainActivity">
 
+    <!-- ============ HEADER ============ -->
+
+    <!-- Foto de perfil (círculo) -->
+    <ImageView
+        android:id="@+id/ivProfile"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:src="@drawable/profile_photo"
+        android:scaleType="centerCrop"
+        android:background="@drawable/bg_circle"
+        android:clipToOutline="true"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <!-- Icono de campana (notificaciones) -->
+
+    <!-- ============ TARJETA "WELCOME" ============ -->
+
+    <ImageView
+        android:id="@+id/ivBell"
+        android:layout_width="44dp"
+        android:layout_height="34dp"
+        android:layout_marginEnd="8dp"
+        android:background="@drawable/bg_circle_light"
+        android:padding="4dp"
+        android:src="@drawable/ic_bell"
+        app:layout_constraintBottom_toBottomOf="@id/ivProfile"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/ivProfile"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardWelcome"
+        android:layout_width="0dp"
+        android:layout_height="190dp"
+        android:layout_marginTop="20dp"
+        app:cardCornerRadius="20dp"
+        app:cardElevation="0dp"
+        app:cardBackgroundColor="@color/welcome_pink"
+        app:layout_constraintTop_toBottomOf="@id/ivProfile"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <!-- Texto de bienvenida -->
+            <TextView
+                android:id="@+id/tvWelcomeLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:layout_marginStart="16dp"
+                android:text="Welcome!"
+                android:textSize="16sp"
+                android:textColor="@color/white_70"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <TextView
+                android:id="@+id/tvUserName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Rajesh"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                android:textColor="@color/white_70"
+                app:layout_constraintTop_toBottomOf="@id/tvWelcomeLabel"
+                app:layout_constraintStart_toStartOf="@id/tvWelcomeLabel" />
+
+            <TextView
+                android:id="@+id/tvSubtitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="How is it going today?"
+                android:textSize="13sp"
+                android:textColor="@color/white_70"
+                android:layout_marginTop="2dp"
+                app:layout_constraintTop_toBottomOf="@id/tvUserName"
+                app:layout_constraintStart_toStartOf="@id/tvUserName" />
+
+            <!-- Botón Urgent Care -->
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnUrgentCare"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Urgent Care"
+                android:textAllCaps="false"
+                android:layout_marginBottom="16dp"
+                android:layout_marginStart="16dp"
+                app:icon="@drawable/ic_ambulance"
+                app:backgroundTint="@color/orange"
+                app:cornerRadius="20dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <!-- Foto del doctor -->
+            <ImageView
+                android:id="@+id/ivDoctor"
+                android:layout_width="197dp"
+                android:layout_height="187dp"
+                android:layout_marginEnd="4dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/doctor_photo"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.538" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+
+    <!-- ============ FILA DE SERVICIOS ============ -->
+
     <TextView
+        android:id="@+id/tvServicesTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:text="Our Services"
+        android:textStyle="bold"
+        android:textSize="16sp"
+        android:layout_marginTop="24dp"
+        app:layout_constraintTop_toBottomOf="@id/cardWelcome"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <LinearLayout
+        android:id="@+id/rowServices"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="3"
+        android:layout_marginTop="16dp"
+        app:layout_constraintTop_toBottomOf="@id/tvServicesTitle"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <!-- Servicio 1: Consultation -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="center">
+
+            <ImageView
+                android:layout_width="52dp"
+                android:layout_height="52dp"
+                android:padding="14dp"
+                android:src="@drawable/ic_consultation"
+                android:background="@drawable/bg_circle_outline" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Consultation"
+                android:textSize="12sp"
+                android:layout_marginTop="8dp" />
+        </LinearLayout>
+
+        <!-- Servicio 2: Medicines -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="center">
+
+            <ImageView
+                android:layout_width="52dp"
+                android:layout_height="52dp"
+                android:padding="14dp"
+                android:src="@drawable/ic_medicines"
+                android:background="@drawable/bg_circle_outline" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Medicines"
+                android:textSize="12sp"
+                android:layout_marginTop="8dp" />
+        </LinearLayout>
+
+        <!-- Servicio 3: Ambulance -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="center">
+
+            <ImageView
+                android:layout_width="52dp"
+                android:layout_height="52dp"
+                android:padding="14dp"
+                android:src="@drawable/ic_ambulance_outline"
+                android:background="@drawable/bg_circle_outline" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Ambulance"
+                android:textSize="12sp"
+                android:layout_marginTop="8dp" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <!--
+        IMPORTANTE PARA TU COMPAÑERO (Persona B):
+        Su sección "Appointment" + barra inferior debe empezar con:
+        app:layout_constraintTop_toBottomOf="@id/rowServices"
+        para que quede debajo de esta fila.
+    -->
 
 </androidx.constraintlayout.widget.ConstraintLayout>
